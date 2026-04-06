@@ -10,9 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    companion object {
-        private const val TAG = "DetektifBug"
-    }
+    private val TAG = "DetektifBug"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,24 +30,18 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "Tombol ditekan. Input1: $input1, Input2: $input2")
 
             if (input1.isNotEmpty() && input2.isNotEmpty()) {
-                try {
-                    val angka1 = input1.toDouble()
-                    val angka2 = input2.toDouble()
+                val angka1 = input1.toDouble()
+                val angka2 = input2.toDouble()
 
-                    if (angka2 == 0.0) {
-                        Log.e(TAG, "Terjadi Kesalahan: Percobaan pembagian dengan angka NOL!")
-                        Toast.makeText(this, "Angka pembagi tidak boleh 0!", Toast.LENGTH_SHORT).show()
-                        tvHasil.text = getString(R.string.label_hasil, "Error")
-                    } else {
-                        val hasilBagi = angka1 / angka2
-                        Log.i(TAG, "Perhitungan berhasil dikerjakan. Hasil: $hasilBagi")
-                        tvHasil.text = getString(R.string.label_hasil, hasilBagi.toString())
-                    }
-                } catch (e: NumberFormatException) {
-                    Toast.makeText(this, "Input tidak valid!", Toast.LENGTH_SHORT).show()
+                if (angka2 == 0.0) {
+                    Log.e(TAG, "Terjadi Kesalahan: Percobaan pembagian dengan angka NOL!")
+                    Toast.makeText(this, "Angka pembagi tidak boleh 0!", Toast.LENGTH_SHORT).show()
+                    tvHasil.text = "Hasil: Error"
+                } else {
+                    val hasilBagi = angka1 / angka2
+                    Log.i(TAG, "Perhitungan berhasil dikerjakan. Hasil: $hasilBagi")
+                    tvHasil.text = "Hasil: $hasilBagi"
                 }
-            } else {
-                Toast.makeText(this, "Masukkan angka terlebih dahulu!", Toast.LENGTH_SHORT).show()
             }
         }
     }
